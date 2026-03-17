@@ -5,10 +5,25 @@ const LoadFunction = ()=>{
 
 }
 
+const manageSpinner=(status)=>{
+    if(status==true){
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('word-container').classList.add('hidden');
+
+    }
+    else{
+
+        document.getElementById('word-container').classList.remove('hidden');
+        document.getElementById('spinner').classList.add('hidden');
+
+    }
+
+}
+
 const loadLevelWord=(id)=>{
     const url= `https://openapi.programming-hero.com/api/level/${id}`
 
-    
+    manageSpinner(true);
     fetch(url)
     .then((response)=>response.json())
     
@@ -23,14 +38,57 @@ const loadLevelWord=(id)=>{
 
 
 };
-const loadWordDetail = (id)=> {
+
+const createElements = (arr)=>{
+
+    const htmlElements= arr.map((el)=> `<span class="btn"> ${el}</span>`)
+
+    return htmlElements.join(" ");
 
 
-    const url= 
+}
+const loadWordDetail = async (id)=> {
 
 
-    console.log(" Hi from loadWordDetail");
+    const url= `https://openapi.programming-hero.com/api/word/${id}`; 
+    const res= await fetch(url);
+    //console.log(url)
+    const details= await res.json();
+    displayWordDetails(details.data);
+    //console.log(details.data);
     
+}
+
+const displayWordDetails=(details)=>{
+
+    const detailsContainer=document.getElementById("details-container");
+     console.log(detailsContainer);
+    detailsContainer.innerHTML = `<div class="space-y-3">
+                    <div><h2 class="text-2xl font-semibold">${details.word} ( <i class="fa-solid fa-microphone-lines"></i>: <span
+                                class="text-bangla">${details.pronunciation}</span>)</h2>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold">Meaning</h2>
+                            <h4 class="text-md font-semibold">${details.meaning}</h2>
+                    </div>
+
+
+
+                    <div>
+                        <h3 class="text-xl font-semibold">Example</h2>
+                        <p>${details.sentence}</p>
+                    </div>
+
+                    <div>
+                        <p>সমার্থক শব্দ গুলো</p>
+                        <div class="" >${createElements(details.synonyms)} </div>
+                    </div>
+                </div>
+                `
+    document.getElementById("my_modal").showModal();
+
+   
+
 }
 const removeActive = ()=>{
 
@@ -57,7 +115,10 @@ const displayLevelWords=(words)=>{
             <img src="./assets/alert-error.png" alt="" class= "mx-auto">
             <p class=" text-gray-400 font-bangla">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
             <h2 class="text-4xl font-bold">নেক্সট Lesson এ যান</h2>
-        </div>`
+        </div>`;
+        manageSpinner(false);
+        return;
+        
     }
 
     // 2. Enter each word
@@ -85,6 +146,7 @@ const displayLevelWords=(words)=>{
         
         `
         wordContainer.appendChild(card)
+        manageSpinner(false);
         
     });
 
