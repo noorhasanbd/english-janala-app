@@ -117,9 +117,23 @@
         </div>
     </section>
 
-    <section class="flex justify-center items-center hidden" id="spinner"><span class=" loading loading-bars loading-xl"></span></section>
+    <section class="p-5 flex justify-center items-center mx-auto">
+        <div class="join">
+            <div>
+                <label class="input validator join-item">
 
-    
+                    <input type="text" id="input-search" placeholder="Search a Vocabulary" required />
+                </label>
+                <div class="validator-hint hidden">Search</div>
+            </div>
+            <button class="btn btn-primary join-item" id="btn-search">Search</button>
+        </div>
+    </section>
+
+    <section class="flex justify-center items-center hidden" id="spinner"><span
+            class=" loading loading-bars loading-xl"></span></section>
+
+
 
     <section class="bg-gray-100 mt-5 p-10 w-11/12 mx-auto grid grid-cols-3 gap-5" id="word-container">
 
@@ -137,39 +151,40 @@
         <div class="modal-box">
             <div id="details-container">
 
-                
-                    <div><h2 class="text-2xl font-semibold">Eager ( <i class="fa-solid fa-microphone-lines"></i>: <span
-                                class="text-bangla">ইগার</span>)</h2>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">Meaning</h2>
-                            <h4 class="text-md font-semibold">আগ্রহী</h2>
-                    </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold">Eager ( <i class="fa-solid fa-microphone-lines"></i>: <span
+                            class="text-bangla">ইগার</span>)</h2>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">Meaning</h2>
+                        <h4 class="text-md font-semibold">আগ্রহী</h2>
+                </div>
 
 
 
-                    <div>
-                        <h3 class="text-xl font-semibold">Meaning</h2>
+                <div>
+                    <h3 class="text-xl font-semibold">Meaning</h2>
                         <p>The kids were eager to open their gifts.</p>
-                    </div>
+                </div>
 
-                    <div>
-                        <p>সমার্থক শব্দ গুলো</p>
-                        
-                    </div>
-                
+                <div>
+                    <p>সমার্থক শব্দ গুলো</p>
+
+                </div>
 
 
-                
+
+
             </div>
 
-        
+
             <div class="modal-action">
-            <form method="dialog">
-                <!-- if there is a button in form, it will close the modal -->
-                <button class="btn">Close</button>
-            </form>
-        </div>
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
         </div>
     </dialog>
 
